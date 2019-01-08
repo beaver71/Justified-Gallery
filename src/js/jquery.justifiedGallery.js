@@ -1,5 +1,5 @@
 /**
- * Justified Gallery - v3.7.0
+ * Justified Gallery - v3.7.1
  * http://miromannino.github.io/Justified-Gallery/
  *
  * Copyright (c) 2018 Miro Mannino
@@ -33,9 +33,9 @@
   }
 }(function ($) {
 
-  //JG-CONTROLLER
-  var JustifiedGallery = function () { }; //placeholder for the JustifiedGallery controller
-  //END JG-CONTROLLER
+// @import test -->
+var JustifiedGallery = function () { }; //placeholder for the JustifiedGallery 
+// @import test -->
 
   /**
    * Justified Gallery plugin for jQuery

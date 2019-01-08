@@ -2,6 +2,8 @@
 
 module.exports = function(grunt) {
 
+grunt.loadNpmTasks('grunt-string-replace');
+
   // Project configuration.
   grunt.initConfig({
     
@@ -44,6 +46,25 @@ module.exports = function(grunt) {
         }]
       }
     },
+	
+	'string-replace': {
+	  dist: {
+		files: {
+		  'dist/js/jquery.<%= pkg.name %>.js': 'dist/js/jquery.<%= pkg.name %>.js',
+		},
+		options: {
+		  replacements: [
+			{
+				pattern: /\/\/ @import (.*?) -->/ig,
+				replacement: function (match, p1) {
+					grunt.log.writeln("LOG replacement",match, p1);
+					return grunt.file.read("src/js/" + grunt.config.get('pkg.name') + ".js").replace(/\\n/g, "\\n  ");
+				}
+			}
+		  ]
+		}
+	  }
+	},
 
     uglify: {
       options: {
@@ -172,10 +193,9 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Default task (release mode)
-  grunt.registerTask('default', ['jshint', 'less', 'csslint', 'concat', 'replace', 'uglify', 'compress']);
+  grunt.registerTask('default', ['jshint', 'less', 'csslint', 'concat', 'string-replace', 'uglify', 'compress']);
 
   // Debug mode (when the library is needed to be compiled only for the tests)
   grunt.registerTask('debug', ['less', 'concat']);
-
 
 };

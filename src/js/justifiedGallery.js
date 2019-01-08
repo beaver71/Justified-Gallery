@@ -1,5 +1,5 @@
 /**
- * Justified Gallery - v3.7.0
+ * Justified Gallery - v3.7.1
  * http://miromannino.github.io/Justified-Gallery/
  *
  * Copyright (c) 2018 Miro Mannino
@@ -876,8 +876,16 @@ JustifiedGallery.prototype.init = function () {
           $entry.data('jg.loaded', true);
           that.startImgAnalyzer(false);
         }, function () { // image load error
-          $entry.data('jg.loaded', 'error');
-          that.startImgAnalyzer(false);
+			if (that.settings.showErrImages) {
+			  $entry.data('jg.width', that.settings.rowHeight);
+			  $entry.data('jg.height', that.settings.rowHeight);
+			  $entry.data('jg.loaded', true);
+			  that.startImgAnalyzer(false);
+			  that.settings.triggerEvent.call(that, 'jg.loadError', {imageSrc: imageSrc, entry: $entry});
+			} else {
+			  $entry.data('jg.loaded', 'error');
+			  that.startImgAnalyzer(false);
+			}
         });
 
       } else {
@@ -1121,7 +1129,7 @@ JustifiedGallery.prototype.defaults = {
   */
   selector: 'a, div:not(.spinner)', // The selector that is used to know what are the entries of the gallery
   imgSelector: '> img, > a > img', // The selector that is used to know what are the images of each entry
-  triggerEvent: function (event) { // This is called to trigger events, the default behavior is to call $.trigger
-    this.$gallery.trigger(event);  // Consider that 'this' is this set to the JustifiedGallery object, so it can
+  triggerEvent: function (event, obj) { // This is called to trigger events, the default behavior is to call $.trigger
+    this.$gallery.trigger(event, obj);  // Consider that 'this' is this set to the JustifiedGallery object, so it can
   }                                // access to fields such as $gallery, useful to trigger events with jQuery.
 };

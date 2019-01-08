@@ -1,6 +1,6 @@
 {
   "name": "justifiedGallery",
-  "version": "3.7.0",
+  "version": "3.7.1",
   "description": "Justified Gallery is a JavaScript library that allows you to create an high quality justified gallery of images.",
   "main": "dist/js/jquery.justifiedGallery.js",
   "repository": {
@@ -42,6 +42,7 @@
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-less": "^1.4.1",
     "grunt-contrib-uglify": "^3.3.0",
+    "grunt-string-replace": "^1.3.1",
     "grunt-text-replace": "^0.4.0",
     "grunt-wiredep": "^3.0.1",
     "load-grunt-tasks": "^3.5.2"
