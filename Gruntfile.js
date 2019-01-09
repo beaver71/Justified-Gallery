@@ -55,7 +55,7 @@ grunt.loadNpmTasks('grunt-string-replace');
 		options: {
 		  replacements: [
 			{
-				pattern: /\/\/ @import (.*?) -->/ig,
+				pattern: /\/\/ @import((.|\n)*)end -->/ig,
 				replacement: function (match, p1) {
 					grunt.log.writeln("LOG replacement",match, p1);
 					return grunt.file.read("src/js/" + grunt.config.get('pkg.name') + ".js").replace(/\\n/g, "\\n  ");

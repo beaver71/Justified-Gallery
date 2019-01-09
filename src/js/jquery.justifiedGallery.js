@@ -33,9 +33,9 @@
   }
 }(function ($) {
 
-// @import test -->
+// @import start -->
 var JustifiedGallery = function () { }; //placeholder for the JustifiedGallery 
-// @import test -->
+// @import end -->
 
   /**
    * Justified Gallery plugin for jQuery
